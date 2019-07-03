@@ -223,6 +223,9 @@ class Utilities():
             ActActMatrix[activityList.index(prev_activity)][activityList.index(activity)] += 1
         
         edges_dict = {}
+        
+        sumFrequency = groupedbyactivityPairs['counts'].sum() - groupedbyactivityPairs.loc[groupedbyactivityPairs['prev_activity'] == ":Start:", 'counts'][0]
+        
         #edges_list = []
         for index, row in groupedbyactivityPairs.iterrows():
             if(row['prev_activity'] == ":Start:"):
@@ -237,7 +240,7 @@ class Utilities():
                 edge_list.append(row['prev_activity'])
                 edge_list.append(row['activity'])
             edge_tuple = tuple(edge_list)
-            if(row['counts'] > frequency_threshold):
+            if(row['counts']/sumFrequency >= frequency_threshold):
                 edges_dict[edge_tuple] = row['counts']
             #edges_list.append(edge_dict)
             #edges_dict.append(edge_dict)
