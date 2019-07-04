@@ -18,12 +18,11 @@ class privacyPreserving(object):
         '''
         Constructor
         '''
-        self.log = log
+        self.log = xes_importer_factory.apply(log)
     
     def apply_privacyPreserving(self, connector_dataStructure_path, show_final_result, **keyword_param):
         
-        log = xes_importer_factory.apply("sample_log.xes")
-        utils = Utilities(log)
+        utils = Utilities(self.log)
         connectorBasic_DF, activityList = utils.create_basic_matrix_connector_activity(relation_depth = keyword_param['relation_depth'], trace_length = keyword_param['trace_length'], trace_id = keyword_param['trace_id'])   
         connectorBasic_DF.to_csv(connector_dataStructure_path, sep=',', encoding='utf-8')
         
