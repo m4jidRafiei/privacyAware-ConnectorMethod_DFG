@@ -1,6 +1,4 @@
 '''
-Created on Jul 2, 2019
-
 @author: majid
 '''
 
@@ -15,7 +13,7 @@ show_final_result = True
 
 
 #Connector structure parameters
-relation_depth = False #if you want to have relation depth in the connector structure
+relation_depth = True #if you want to have relation depth in the connector structure
 trace_length = True # if you want to have trace length in the connector structure
 trace_id = True # if you want to have a fake trace id in the connector structure
 

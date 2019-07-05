@@ -1,6 +1,4 @@
 '''
-Created on Jul 3, 2019
-
 @author: majid
 '''
 
