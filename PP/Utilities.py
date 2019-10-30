@@ -130,7 +130,7 @@ class Utilities():
                 if(keyword_param['trace_length']):
                     sndict['trace_length'] = len(case)
                 if(keyword_param['trace_id']):
-                    sndict['trace0_id'] = case_index
+                    sndict['trace_id'] = case_index
                 snBasicList.append(sndict)
                 
                 sndict = {}
