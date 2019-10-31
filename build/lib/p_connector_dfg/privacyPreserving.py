@@ -35,7 +35,7 @@ class privacyPreserving(object):
         range_end = (10 ** n) - 1
         return randint(range_start, range_end)
 
-    def apply_privacyPreserving(self, pma_path, event_log, **keyword_param):
+    def apply_privacyPreserving(self, pma_path, pma_method, pma_desired_analyses,  event_log, **keyword_param):
         
         utils = Utilities(self.log)
         connectorBasic_DF, activityList = utils.create_basic_matrix_connector_activity(relation_depth = keyword_param['relation_depth'], trace_length = keyword_param['trace_length'], trace_id = keyword_param['trace_id'])
@@ -81,7 +81,7 @@ class privacyPreserving(object):
 
         #create xml from the abstract
         pma = PMA()
-        pma.set_values(origin=event_log, method='Connector Method', desired_analyses=['discovery'].copy(), data=connectorBasic_DF_connector)
+        pma.set_values(origin=event_log, method=pma_method, desired_analyses=pma_desired_analyses, data=connectorBasic_DF_connector)
         pma.create_xml(pma_path)
 
     
