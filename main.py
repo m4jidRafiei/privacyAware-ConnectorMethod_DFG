@@ -2,7 +2,7 @@
 @author: majid
 '''
 
-from PP.privacyPreserving import privacyPreserving
+from p_connector_dfg.privacyPreserving import privacyPreserving
 
 pma_path = ".\intermediate_results\pma_connector.xml"
 # show_final_result = False

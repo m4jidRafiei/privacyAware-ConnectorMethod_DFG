@@ -2,12 +2,12 @@
 @author: majid
 '''
 
-from PP.Utilities import Utilities
+from p_connector_dfg.Utilities import Utilities
 from pm4py.objects.log.importer.xes import factory as xes_importer_factory
 import pandas as pd
 import numpy as np
 from random import randint
-from PP.PMA import PMA
+from p_connector_dfg.PMA import PMA
 
 class privacyPreserving(object):
     '''
