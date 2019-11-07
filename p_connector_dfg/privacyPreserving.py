@@ -115,13 +115,13 @@ class privacyPreserving(object):
         if(export_ActActMatrix):
             ActActMatrix_pd.to_csv(keyword_param['activity_activity_matrix_path'], sep=',', encoding='utf-8')
 
-    def result_maker_pma(self, filepath, encryptedResult, visualizeResult, export_ActActMatrix, frequencyThreshold, **keyword_param):
+    def result_maker_pma(self, filepath, encryptedResult, visualizeResult, export_ActActMatrix, frequencyThreshold, dfg_path, **keyword_param):
         pma = PMA()
         xml_data = pma.read_xml(filepath)
 
         data = pd.DataFrame(xml_data['data'])
 
-        ActActMatrix, activityList = Utilities.makeDFG_connector(data, frequencyThreshold,
+        ActActMatrix, activityList = Utilities.makeDFG_connector(data, frequencyThreshold, dfg_path,
                                                                  encryption=encryptedResult,
                                                                  visualization=visualizeResult)
 

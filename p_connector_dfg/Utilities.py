@@ -200,7 +200,7 @@ class Utilities():
             
     
     @staticmethod
-    def makeDFG_connector(ConnectorBasicStructure, frequency_threshold, **keyword_param):   
+    def makeDFG_connector(ConnectorBasicStructure, frequency_threshold, dfg_path, **keyword_param):
         
         unique_activities = ConnectorBasicStructure['activity'].unique()
         unique_next_activities = ConnectorBasicStructure['prev_activity'].unique()
@@ -259,13 +259,13 @@ class Utilities():
         for key, value in nodes[0].items():
             nodes_new[Utilities.AES_ECB_Encrypt(key.encode('utf-8'))[0:5]] = value
         if(keyword_param['encryption']):
-            gviz = dfg_vis_factory.apply(edges_dict, activities_count=nodes_new, parameters={"format": "pdf"})
+            gviz = dfg_vis_factory.apply(edges_dict, activities_count=nodes_new, parameters={"format": "svg"})
         else:
-            gviz = dfg_vis_factory.apply(edges_dict, activities_count=nodes[0], parameters={"format": "pdf"})
+            gviz = dfg_vis_factory.apply(edges_dict, activities_count=nodes[0], parameters={"format": "svg"})
         
         if(keyword_param['visualization']):
             dfg_vis_factory.view(gviz)
-            dfg_vis_factory.save(gviz, "pm4py.png")
+            dfg_vis_factory.save(gviz, dfg_path)
         
         return ActActMatrix, activityList
         
