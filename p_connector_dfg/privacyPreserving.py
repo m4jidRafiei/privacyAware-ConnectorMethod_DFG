@@ -35,7 +35,7 @@ class privacyPreserving(object):
         range_end = (10 ** n) - 1
         return randint(range_start, range_end)
 
-    def apply_privacyPreserving(self, pma_path, pma_method, pma_desired_analyses,  event_log, **keyword_param):
+    def apply_privacyPreserving(self, key, pma_path, pma_method, pma_desired_analyses,  event_log, **keyword_param):
         
         utils = Utilities(self.log)
         connectorBasic_DF, activityList = utils.create_basic_matrix_connector_activity(relation_depth = keyword_param['relation_depth'], trace_length = keyword_param['trace_length'], trace_id = keyword_param['trace_id'])
@@ -64,7 +64,7 @@ class privacyPreserving(object):
         connector = []
         for indexDF, rowDF in connectorBasic_DF_connector.iterrows():
             print("-----------", rowDF)
-            connector_value = Utilities.AES_ECB_Encrypt((rowDF['prev_id'] +'::'+ rowDF['new_id']).encode('utf-8'))
+            connector_value = Utilities.AES_ECB_Encrypt((rowDF['prev_id'] +'::'+ rowDF['new_id']).encode('utf-8'),key)
             connector.append(connector_value)
         connectorBasic_DF_connector['connector'] = np.array(connector)
 
@@ -108,7 +108,7 @@ class privacyPreserving(object):
         else:
             snBasic_DF = keyword_param['connector_ds']
 
-        ActActMatrix, activityList = Utilities.makeDFG_connector(snBasic_DF, frequencyThreshold, encryption=encryptedResult, visualization=visualizeResult)
+        ActActMatrix, activityList = Utilities.makeDFG_connector(snBasic_DF, frequencyThreshold, encryption=encryptedResult, visualization=visualizeResult, key=keyword_param['key'])
 
         ActActMatrix_pd = pd.DataFrame(ActActMatrix, index=activityList, columns=activityList)
 
@@ -123,7 +123,7 @@ class privacyPreserving(object):
 
         ActActMatrix, activityList = Utilities.makeDFG_connector(data, frequencyThreshold, dfg_path,
                                                                  encryption=encryptedResult,
-                                                                 visualization=visualizeResult)
+                                                                 visualization=visualizeResult,key=keyword_param['key'])
 
         ActActMatrix_pd = pd.DataFrame(ActActMatrix, index=activityList, columns=activityList)
 

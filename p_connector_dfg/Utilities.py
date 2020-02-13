@@ -102,9 +102,9 @@ class Utilities():
         if(keyword_param['resource_encryption'] == True):
             for indexDF, rowDF in full_df.iterrows():
                 print("-----------", rowDF)
-                full_df.loc[indexDF,'resource'] = Utilities.AES_ECB_Encrypt(full_df.loc[indexDF,'resource'].encode('utf-8'))
+                full_df.loc[indexDF,'resource'] = Utilities.AES_ECB_Encrypt(full_df.loc[indexDF,'resource'].encode('utf-8'),keyword_param['key'])
                 if(full_df.loc[indexDF,'prev_resource'] != ":Start:"):
-                    full_df.loc[indexDF,'prev_resource'] = Utilities.AES_ECB_Encrypt(full_df.loc[indexDF,'prev_resource'].encode('utf-8'))
+                    full_df.loc[indexDF,'prev_resource'] = Utilities.AES_ECB_Encrypt(full_df.loc[indexDF,'prev_resource'].encode('utf-8'),keyword_param['key'])
          
         Utilities.setResourceSetList_previous(self, full_df)   
         Utilities.setActivitySetList_previous(self, full_df)
@@ -154,8 +154,8 @@ class Utilities():
         return hexvalue
 
     @staticmethod
-    def AES_ECB_Encrypt(data):
-        key = 'M4J!DPASSWORD!!!'
+    def AES_ECB_Encrypt(data,key):
+        # key = 'M4J!DPASSWORD!!!'
         cipher = AES.new(key.encode('utf8'), AES.MODE_ECB)
         length = 16 - (len(data) % 16)
         data += bytes([length])*length
@@ -164,37 +164,37 @@ class Utilities():
         return result
     
     @staticmethod
-    def AES_ECB_Decrypt(enc_data):
-        key = 'M4J!DPASSWORD!!!'
+    def AES_ECB_Decrypt(enc_data,key):
+        # key = 'M4J!DPASSWORD!!!'
         decipher = AES.new(key.encode('utf8'), AES.MODE_ECB)
         msg_dec = decipher.decrypt(bytes.fromhex(enc_data))
         msg_dec = msg_dec[:-msg_dec[-1]]
         return msg_dec.decode('utf-8')
     
-    def resourceEncryption(self, snDF):
+    def resourceEncryption(self, snDF,key):
         for indexDF, rowDF in snDF.iterrows():
             print("-----------", rowDF)
-            snDF.loc[indexDF,'resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'resource'].encode('utf-8'))
-            snDF.loc[indexDF,'next_resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'next_resource'].encode('utf-8'))
+            snDF.loc[indexDF,'resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'resource'].encode('utf-8'),key)
+            snDF.loc[indexDF,'next_resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'next_resource'].encode('utf-8'),key)
         
         Utilities.setResourceSetList(self, snDF)   
         return snDF, self.resourceList
     
-    def resourceEncryption_connector(self, snDF):
+    def resourceEncryption_connector(self, snDF,key):
         for indexDF, rowDF in snDF.iterrows():
             print("-----------", rowDF)
-            snDF.loc[indexDF,'resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'resource'].encode('utf-8'))
-            snDF.loc[indexDF,'prev_resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'prev_resource'].encode('utf-8'))
+            snDF.loc[indexDF,'resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'resource'].encode('utf-8'),key)
+            snDF.loc[indexDF,'prev_resource'] = Utilities.AES_ECB_Encrypt(self, snDF.loc[indexDF,'prev_resource'].encode('utf-8'),key)
         
         Utilities.setResourceSetList_previous(self, snDF)    
         return snDF, self.resourceList
     
-    def resourceDecryption(self, resourceList):
+    def resourceDecryption(self, resourceList,key):
         
         Decrypted_resourceList = list()
         for resource in resourceList:
             print("-----------", resource)
-            Decrypted_resourceList.append(Utilities.AES_ECB_Decrypt(self, resource))
+            Decrypted_resourceList.append(Utilities.AES_ECB_Decrypt(self, resource,key))
             
         return Decrypted_resourceList
             
@@ -232,8 +232,8 @@ class Utilities():
             edge_list = [] 
             
             if(keyword_param['encryption']):
-                edge_list.append(Utilities.AES_ECB_Encrypt(row['prev_activity'].encode('utf-8'))[0:5])
-                edge_list.append(Utilities.AES_ECB_Encrypt(row['activity'].encode('utf-8'))[0:5])
+                edge_list.append(Utilities.AES_ECB_Encrypt(row['prev_activity'].encode('utf-8'))[0:5],keyword_param['key'])
+                edge_list.append(Utilities.AES_ECB_Encrypt(row['activity'].encode('utf-8'))[0:5],keyword_param['key'])
             else:
                 edge_list.append(row['prev_activity'])
                 edge_list.append(row['activity'])
@@ -257,7 +257,7 @@ class Utilities():
         #Making encrypted nodes
         nodes_new = {}
         for key, value in nodes[0].items():
-            nodes_new[Utilities.AES_ECB_Encrypt(key.encode('utf-8'))[0:5]] = value
+            nodes_new[Utilities.AES_ECB_Encrypt(key.encode('utf-8'),keyword_param['key'])[0:5]] = value
         if(keyword_param['encryption']):
             gviz = dfg_vis_factory.apply(edges_dict, activities_count=nodes_new, parameters={"format": "svg"})
         else:

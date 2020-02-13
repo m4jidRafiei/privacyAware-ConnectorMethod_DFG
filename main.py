@@ -18,15 +18,16 @@ trace_length = True # if you want to have trace length in the connector structur
 trace_id = True # if you want to have a fake trace id in the connector structure
 
 event_log = "sample_log.xes"
+key = 'DEFPASSWORD12!!!'
 
 pp = privacyPreserving(event_log)
-# pp.apply_privacyPreserving(pma_path, pma_method, pma_desired_analyses, event_log, relation_depth = relation_depth, trace_length = trace_length, trace_id = trace_id)
+pp.apply_privacyPreserving(key, pma_path, pma_method, pma_desired_analyses, event_log, relation_depth = relation_depth, trace_length = trace_length, trace_id = trace_id)
 
 #directly call result maker---------------
 # activity_activity_matrix_path = ".\intermediate_results\ActActMatrix.csv"
-# pp.result_maker(True, True, True, False, 0.0, connector_dataStructure_path = connector_dataStructure_path, activity_activity_matrix_path = activity_activity_matrix_path)
+# pp.result_maker(True, True, True, False, 0.0, connector_dataStructure_path = connector_dataStructure_path, activity_activity_matrix_path = activity_activity_matrix_path, key = 'M4J!DPASSWORD!!!')
 
 #directly call result maker using PMA (Process Mining Abstraction)---------------
-activity_activity_matrix_path = ".\intermediate_results\ActActMatrix.csv"
+# activity_activity_matrix_path = ".\intermediate_results\ActActMatrix.csv"
 
-pp.result_maker_pma(pma_path, True,True, True, freq_threshold, dfg_path, activity_activity_matrix_path = activity_activity_matrix_path)
+# pp.result_maker_pma(pma_path, True,True, True, freq_threshold, dfg_path, activity_activity_matrix_path = activity_activity_matrix_path,key = 'M4J!DPASSWORD!!!')
