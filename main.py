@@ -6,7 +6,7 @@ from p_connector_dfg.privacyPreserving import privacyPreserving
 
 pma_path = ".\intermediate_results\pma_connector.xml"
 pma_method = "Connector Method"
-pma_desired_analyses = ['Directly Follows Graph']
+pma_desired_analyses = ['directly follows graph', 'process discovery']
 
 dfg_path = "./DFG.svg"
 freq_threshold = 0.0

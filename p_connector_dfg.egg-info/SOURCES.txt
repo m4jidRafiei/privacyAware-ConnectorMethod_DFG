@@ -1,6 +1,5 @@
 README.md
 setup.py
-p_connector_dfg/PMA.py
 p_connector_dfg/Utilities.py
 p_connector_dfg/__init__.py
 p_connector_dfg/privacyPreserving.py

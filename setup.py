@@ -16,16 +16,17 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/m4jidRafiei/privacyAware-ConnectorMethod_DFG",
     packages=setuptools.find_packages(),
+    license='GPL 3.0',
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     install_requires=[
         'pm4py==1.2.0',
         'pandas==0.24.2',
         'pycrypto==2.6.1',
-        'numpy==1.17.3'
+        'numpy==1.17.3',
+        'p_privacy_metadata==0.0.1'
     ],
     project_urls={
         'Source': 'https://github.com/m4jidRafiei/privacyAware-ConnectorMethod_DFG'

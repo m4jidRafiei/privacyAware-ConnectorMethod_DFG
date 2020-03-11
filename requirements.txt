@@ -1,4 +1,7 @@
-pm4py==1.2.0
+~umpy==1.14.3
 pandas==0.24.2
+pm4py==1.2.10
+setuptools==41.0.1
+p_privacy_metadata==0.0.1
 pycrypto==2.6.1
-numpy==1.17.3
+numpy==1.18.1
