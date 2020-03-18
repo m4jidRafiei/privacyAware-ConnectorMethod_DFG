@@ -22,11 +22,11 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'pm4py==1.2.0',
+        'pm4py==1.2.10',
         'pandas==0.24.2',
         'pycrypto==2.6.1',
-        'numpy==1.17.3',
-        'p_privacy_metadata==0.0.1'
+        'numpy==1.18.1',
+        'p_privacy_metadata==0.0.2'
     ],
     project_urls={
         'Source': 'https://github.com/m4jidRafiei/privacyAware-ConnectorMethod_DFG'
