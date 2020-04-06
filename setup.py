@@ -26,7 +26,7 @@ setuptools.setup(
         'pandas==0.24.2',
         'pycrypto==2.6.1',
         'numpy==1.18.1',
-        'p_privacy_metadata==0.0.2'
+        'p_privacy_metadata==0.0.3'
     ],
     project_urls={
         'Source': 'https://github.com/m4jidRafiei/privacyAware-ConnectorMethod_DFG'
