@@ -232,8 +232,8 @@ class Utilities():
             edge_list = [] 
             
             if(keyword_param['encryption']):
-                edge_list.append(Utilities.AES_ECB_Encrypt(row['prev_activity'].encode('utf-8'))[0:5],keyword_param['key'])
-                edge_list.append(Utilities.AES_ECB_Encrypt(row['activity'].encode('utf-8'))[0:5],keyword_param['key'])
+                edge_list.append(Utilities.AES_ECB_Encrypt(row['prev_activity'].encode('utf-8')[0:5],keyword_param['key']))
+                edge_list.append(Utilities.AES_ECB_Encrypt(row['activity'].encode('utf-8')[0:5],keyword_param['key']))
             else:
                 edge_list.append(row['prev_activity'])
                 edge_list.append(row['activity'])

@@ -8,6 +8,8 @@ pma_path = ".\intermediate_results\pma_connector.xml"
 pma_method = "Connector Method"
 pma_desired_analyses = ['directly follows graph', 'process discovery']
 
+activity_activity_matrix_path = r".\intermediate_results\test.csv"
+
 dfg_path = "./DFG.svg"
 freq_threshold = 0.0
 # show_final_result = False
@@ -30,4 +32,4 @@ pp.apply_privacyPreserving(key, pma_path, pma_method, pma_desired_analyses, even
 #directly call result maker using PMA (Process Mining Abstraction)---------------
 # activity_activity_matrix_path = ".\intermediate_results\ActActMatrix.csv"
 
-# pp.result_maker_pma(pma_path, True,True, True, freq_threshold, dfg_path, activity_activity_matrix_path = activity_activity_matrix_path,key = 'M4J!DPASSWORD!!!')
+pp.result_maker_pma(pma_path, True,True, True, freq_threshold, dfg_path, activity_activity_matrix_path = activity_activity_matrix_path,key = key)
