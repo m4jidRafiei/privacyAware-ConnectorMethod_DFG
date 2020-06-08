@@ -4,9 +4,9 @@
 
 from p_connector_dfg.privacyPreserving import privacyPreserving
 
-pma_path = ".\intermediate_results\pma_connector.xml"
-pma_method = "Connector Method"
-pma_desired_analyses = ['directly follows graph', 'process discovery']
+ela_path = ".\intermediate_results\ela_connector.xml"
+ela_method = "Connector Method"
+ela_desired_analyses = ['directly follows graph', 'process discovery']
 
 activity_activity_matrix_path = r".\intermediate_results\test.csv"
 
@@ -23,13 +23,13 @@ event_log = "sample_log.xes"
 key = 'DEFPASSWORD12!!!'
 
 pp = privacyPreserving(event_log)
-pp.apply_privacyPreserving(key, pma_path, pma_method, pma_desired_analyses, event_log, relation_depth = relation_depth, trace_length = trace_length, trace_id = trace_id)
+pp.apply_privacyPreserving(key, ela_path, ela_method, ela_desired_analyses, event_log, relation_depth = relation_depth, trace_length = trace_length, trace_id = trace_id)
 
 #directly call result maker---------------
 # activity_activity_matrix_path = ".\intermediate_results\ActActMatrix.csv"
 # pp.result_maker(True, True, True, False, 0.0, connector_dataStructure_path = connector_dataStructure_path, activity_activity_matrix_path = activity_activity_matrix_path, key = 'M4J!DPASSWORD!!!')
 
-#directly call result maker using PMA (Process Mining Abstraction)---------------
+#directly call result maker using ela (Process Mining Abstraction)---------------
 # activity_activity_matrix_path = ".\intermediate_results\ActActMatrix.csv"
 
-pp.result_maker_pma(pma_path, True,True, True, freq_threshold, dfg_path, activity_activity_matrix_path = activity_activity_matrix_path,key = key)
+pp.result_maker_ela(ela_path, True,True, True, freq_threshold, dfg_path, activity_activity_matrix_path = activity_activity_matrix_path,key = key)

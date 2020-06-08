@@ -7,7 +7,7 @@ from pm4py.objects.log.importer.xes import factory as xes_importer_factory
 import pandas as pd
 import numpy as np
 from random import randint
-from p_privacy_metadata.PMA import PMA
+from p_privacy_metadata.ELA import ELA
 
 class privacyPreserving(object):
     '''
@@ -35,7 +35,7 @@ class privacyPreserving(object):
         range_end = (10 ** n) - 1
         return randint(range_start, range_end)
 
-    def apply_privacyPreserving(self, key, pma_path, pma_method, pma_desired_analyses,  event_log, **keyword_param):
+    def apply_privacyPreserving(self, key, ela_path, ela_method, ela_desired_analyses,  event_log, **keyword_param):
         
         utils = Utilities(self.log)
         connectorBasic_DF, activityList = utils.create_basic_matrix_connector_activity(relation_depth = keyword_param['relation_depth'], trace_length = keyword_param['trace_length'], trace_id = keyword_param['trace_id'])
@@ -86,9 +86,9 @@ class privacyPreserving(object):
         except Exception as e:
             log_name = "No mame is given for the event log!"
 
-        pma = PMA()
-        pma.set_values(origin=log_name, method=pma_method, desired_analyses=pma_desired_analyses, data=connectorBasic_DF_connector)
-        pma.create_xml(pma_path)
+        ela = ELA()
+        ela.set_values(origin=log_name, method=ela_method, desired_analyses=ela_desired_analyses, data=connectorBasic_DF_connector)
+        ela.create_xml(ela_path)
 
     
         # if(show_final_result):
@@ -121,9 +121,9 @@ class privacyPreserving(object):
         if(export_ActActMatrix):
             ActActMatrix_pd.to_csv(keyword_param['activity_activity_matrix_path'], sep=',', encoding='utf-8')
 
-    def result_maker_pma(self, filepath, encryptedResult, visualizeResult, export_ActActMatrix, frequencyThreshold, dfg_path, **keyword_param):
-        pma = PMA()
-        xml_data = pma.read_xml(filepath)
+    def result_maker_ela(self, filepath, encryptedResult, visualizeResult, export_ActActMatrix, frequencyThreshold, dfg_path, **keyword_param):
+        ela = ELA()
+        xml_data = ela.read_xml(filepath)
 
         data = pd.DataFrame(xml_data['data'])
 
