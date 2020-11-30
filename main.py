@@ -3,6 +3,11 @@
 '''
 
 from p_connector_dfg.privacyPreserving import privacyPreserving
+import os
+
+
+if not os.path.exists("./intermediate_results"):
+    os.makedirs("./intermediate_results")
 
 ela_path = ".\intermediate_results\ela_connector.xml"
 ela_method = "Connector Method"
