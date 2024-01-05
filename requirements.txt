@@ -2,4 +2,4 @@ pandas==0.24.2
 numpy>=1.18.1
 pm4py==1.2.10
 p_privacy_metadata==0.0.4
-pycryptodome==3.9.9
+pycryptodome==3.19.1
